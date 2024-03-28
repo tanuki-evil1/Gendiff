@@ -7,7 +7,8 @@ def main():
     data = get_data_from_cmd()
     file_path1 = data.first_file
     file_path2 = data.second_file
-    print(generate_diff(file_path1, file_path2))
+    form = data.format
+    print(generate_diff(file_path1, file_path2, form=form))
 
 
 if __name__ == '__main__':
