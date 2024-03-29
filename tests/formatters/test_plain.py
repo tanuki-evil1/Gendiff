@@ -1,4 +1,4 @@
-from gendiff.formatters.plain import plain
+from gendiff.formatters.plain import plain_formatter
 
 
 def test_plain():
@@ -6,5 +6,5 @@ def test_plain():
         expected = file.read()
     dict1 = {('follow', '-'): 'false', ('host', ' '): 'hexlet.io', ('proxy', '-'): '123.234.53.22',
              ('timeout', '-'): '50', ('timeout', '+'): '20', ('verbose', '+'): 'true'}
-    result = plain(dict1)
+    result = plain_formatter(dict1)
     assert result == expected
