@@ -31,8 +31,7 @@ def diff(file1: dict, file2: dict) -> dict:
                 if file1[key] == file2[key]:
                     result[key, ' '] = walk(file1)
                 else:
-                    result[key, '-'] = walk(file1)
-                    result[key, '+'] = walk(file2)
+                    result[key, '-+'] = walk(file1), walk(file2)
         elif key in file1:
             result[key, '-'] = walk(file1)
         elif key in file2:
@@ -40,7 +39,7 @@ def diff(file1: dict, file2: dict) -> dict:
     return result
 
 
-def generate_diff(file_path1: str, file_path2: str, form=plain) -> str:
+def generate_diff(file_path1: str, file_path2: str, form=stylish) -> str:
     dict1, dict2 = get_files_data(file_path1, file_path2)
     diff_list = diff(dict1, dict2)
     pprint(diff_list)
