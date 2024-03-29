@@ -1,13 +1,6 @@
 from gendiff import engine
 
 
-def test_normalize_data():
-    assert 'false' == engine.normalize_data(False)
-    assert 'null' == engine.normalize_data(None)
-    assert 'foobar' == engine.normalize_data('foobar')
-    assert '' == engine.normalize_data('')
-
-
 def test_diff():
     expected = {('follow', '-'): 'false', ('host', ' '): 'hexlet.io', ('proxy', '-'): '123.234.53.22',
                 ('timeout', '-'): '50', ('timeout', '+'): '20', ('verbose', '+'): 'true'}

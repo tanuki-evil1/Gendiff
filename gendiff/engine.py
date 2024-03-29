@@ -5,15 +5,6 @@ from formatters.stylish import stylish
 from formatters.plain import plain
 
 
-def normalize_data(item: Any) -> str:
-    if isinstance(item, bool):
-        return str(item).lower()
-    elif item is None:
-        return 'null'
-    else:
-        return str(item)
-
-
 def diff(file1: dict, file2: dict) -> dict:
     result = {}
 
@@ -21,7 +12,7 @@ def diff(file1: dict, file2: dict) -> dict:
         if isinstance(file[key], dict):
             return diff(file[key], file[key])
         else:
-            return normalize_data(file[key])
+            return file[key]
 
     for key in sorted((file1 | file2)):
         if key in file1 and key in file2:
@@ -39,7 +30,7 @@ def diff(file1: dict, file2: dict) -> dict:
     return result
 
 
-def generate_diff(file_path1: str, file_path2: str, form=stylish) -> str:
+def generate_diff(file_path1: str, file_path2: str, form=plain) -> str:
     dict1, dict2 = get_files_data(file_path1, file_path2)
     diff_list = diff(dict1, dict2)
     pprint(diff_list)
