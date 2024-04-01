@@ -1,8 +1,8 @@
 ### Hexlet tests and linter status:
 
 [![Actions Status](https://github.com/tanuki-evil1/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/tanuki-evil1/python-project-50/actions)
-[![Maintainability](https://api.codeclimate.com/v1/badges/aa7dde318bdb3e595616/maintainability)](https://codeclimate.com/github/tanuki-evil1/python-project-50/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/aa7dde318bdb3e595616/test_coverage)](https://codeclimate.com/github/tanuki-evil1/python-project-50/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/54887b2e7ecf897eec70/maintainability)](https://codeclimate.com/github/tanuki-evil1/python-project-50/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/54887b2e7ecf897eec70/test_coverage)](https://codeclimate.com/github/tanuki-evil1/python-project-50/test_coverage)
 ## "Gendiff" compares two configuration files and shows a difference.
 
 ### Links
