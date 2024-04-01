@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 from gendiff.engine import generate_diff
 from gendiff.parse_cmd import get_data_from_cmd
-from gendiff.formatters.plain import plain_formatter
-from gendiff.formatters.stylish import stylish_formatter
 
 
 def main():

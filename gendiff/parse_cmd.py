@@ -4,7 +4,7 @@ PROGRAM = "gendiff"
 DESCRIPTION = "Compares two configuration files and shows a difference."
 
 
-def get_data_from_cmd():
+def get_data_from_cmd() -> argparse.Namespace:
     parser = argparse.ArgumentParser(prog=PROGRAM,
                                      description=DESCRIPTION)
     parser.add_argument('first_file', type=str)
