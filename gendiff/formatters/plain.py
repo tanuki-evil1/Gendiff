@@ -1,6 +1,8 @@
 from typing import Any
 
 
+# TODO: узнать как давать тайпинг именованным аргументам
+
 def normalize(value: Any) -> str:
     if isinstance(value, dict):
         return '[complex value]'
@@ -13,7 +15,7 @@ def normalize(value: Any) -> str:
 
 
 def plain_formatter(diff_list: dict) -> str:
-    def walk(node: dict, accumulator='') -> list:  # TODO: узнать как давать тайпинг именованным аргументам
+    def walk(node: dict, accum='') -> list:
         styled = []
 
         for key, value in node.items():
@@ -21,13 +23,18 @@ def plain_formatter(diff_list: dict) -> str:
                 sign, value = value
                 match sign:
                     case '+':
-                        styled.append(f"Property '{accumulator}{key}' was added with value: {normalize(value)}")
+                        val1 = normalize(value)
+                        styled.append(f"Property '{accum}{key}'"
+                                      f" was added with value: {val1}")
                     case '-':
-                        styled.append(f"Property '{accumulator}{key}' was removed")
+                        styled.append(f"Property '{accum}{key}' was removed")
                     case '-+':
-                        styled.append(f"Property '{accumulator}{key}' was updated. From {normalize(value[0])} to {normalize(value[1])}")
+                        val1, val2 = normalize(value[0]), normalize(value[1])
+                        styled.append(f"Property '{accum}{key}'"
+                                      f" was updated. From {val1} to {val2}")
             elif isinstance(value, dict):
-                styled.extend(walk(value, accumulator + key + '.'))
+                styled.extend(walk(value, accum + key + '.'))
 
         return styled
+
     return '\n'.join(walk(diff_list))
