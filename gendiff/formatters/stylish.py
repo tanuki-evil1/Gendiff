@@ -21,16 +21,21 @@ def stylish_formatter(diff_list: dict) -> str:
 
             for index in range(len(sign)):
                 if sign == '-+':
-                    sub_value = normalize(value[1]) if index else normalize(value[0])
+                    if index:
+                        sub_value = normalize(value[1])
+                    else:
+                        sub_value = normalize(value[0])
                 else:
                     sub_value = normalize(value)
 
                 if isinstance(sub_value, dict):
-                    styled.append(f"{' ' * (4 * accum - 2)}{sign[index]} {key}: " + '{')
+                    styled.append(f"{' ' * (4 * accum - 2)}"
+                                  f"{sign[index]} {key}: " + '{')
                     styled.extend(walk(sub_value, accum + 1))
                     styled.append(f"{' ' * (4 * accum - 2)}  " + '}')
                 else:
-                    styled.append(f"{' ' * (4 * accum - 2)}{sign[index]} {key}: {sub_value}")
+                    styled.append(f"{' ' * (4 * accum - 2)}"
+                                  f"{sign[index]} {key}: {sub_value}")
 
         return styled
 

@@ -1,4 +1,3 @@
-from pprint import pprint
 from typing import Any, Dict
 
 from gendiff.parse_files import get_files_data
@@ -39,6 +38,4 @@ def diff(file1: dict, file2: dict) -> Dict[str, Any]:
 def generate_diff(file_path1: str, file_path2: str, form='stylish') -> str:
     dict1, dict2 = get_files_data(file_path1, file_path2)
     diff_list = diff(dict1, dict2)
-    pprint(diff_list)
-    print('=======================================')
     return FORMATTERS[form](diff_list)
