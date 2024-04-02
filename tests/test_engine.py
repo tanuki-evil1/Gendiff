@@ -15,6 +15,7 @@ def test_diff():
     assert result == expected
 
 
+# TODO: узнать про достаточное кол-во тестов, можно ли меньше или нужно больше
 @pytest.mark.parametrize("path1, path2, res_path", [(f'{FIXTURES_PATH}/file1.json',
                                                      f'{FIXTURES_PATH}/file2.json',
                                                      f'{FIXTURES_PATH}/formatters/file_stylish_1_to_2.txt'),
