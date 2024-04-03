@@ -8,7 +8,7 @@ lint:
 	poetry run flake8 gendiff
 
 test:
-	poetry run pytest --cov=gendiff --cov-report term-missing
+	poetry run pytest
 
 package-install:
 	python3 -m pip install --user dist/*.whl
