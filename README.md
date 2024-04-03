@@ -49,10 +49,22 @@ make build
 make package-install
 ```
 
-##### Gendiff using with JSON
+##### Using with JSON
 
 [![asciicast](https://asciinema.org/a/1wMP4gW50QiJ8JWDCmBMZkjjz.svg)](https://asciinema.org/a/1wMP4gW50QiJ8JWDCmBMZkjjz)
 
-##### Gendiff using with YAML
+##### Using with YAML
 
 [![asciicast](https://asciinema.org/a/vsxgr9IBgwqdgAQV1YQvioKsm.svg)](https://asciinema.org/a/vsxgr9IBgwqdgAQV1YQvioKsm)
+
+##### Works with complex structure
+
+[![asciicast](https://asciinema.org/a/UBYe8J6qLn2dlQiZIILILeeA0.svg)](https://asciinema.org/a/UBYe8J6qLn2dlQiZIILILeeA0)
+
+##### Plain formatter
+
+[![asciicast](https://asciinema.org/a/JZI4BjzYQlSdtcRtwf26xrRJd.svg)](https://asciinema.org/a/JZI4BjzYQlSdtcRtwf26xrRJd)
+
+##### Json formatter
+
+[![asciicast](https://asciinema.org/a/qX42gl9Zut4DOXsU19wlsIrpP.svg)](https://asciinema.org/a/qX42gl9Zut4DOXsU19wlsIrpP)
