@@ -17,5 +17,4 @@ publish:
 	poetry publish --dry-run
 
 test-coverage:
-	#poetry run pytest --cov-report term-missing --cov=gendiff/
-	poetry run pytest --cov=gendiff/ --cov-report xml
+	poetry run pytest --cov=gendiff --cov-report xml

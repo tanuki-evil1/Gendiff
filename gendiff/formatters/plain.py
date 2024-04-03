@@ -10,8 +10,10 @@ def normalize(value: Any) -> str:
         return str(value).lower()
     elif value is None:
         return 'null'
-    else:
+    elif isinstance(value, str):
         return f"'{value}'"
+    else:
+        return value
 
 
 def plain_formatter(diff_list: dict) -> str:
