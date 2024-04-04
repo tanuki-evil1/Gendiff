@@ -1,8 +1,6 @@
 from typing import Any
 
 
-# TODO: узнать как давать тайпинг именованным аргументам
-
 def normalize(value: Any) -> Any:
     if isinstance(value, dict):
         result = '[complex value]'
@@ -18,7 +16,7 @@ def normalize(value: Any) -> Any:
 
 
 def plain_formatter(diff_list: dict) -> str:
-    def walk(node: dict, accum='') -> list:
+    def walk(node: dict, accum: str = '') -> list:
         styled = []
 
         for key, value in node.items():
