@@ -23,13 +23,13 @@ def plain_formatter(diff_list: dict) -> str:
             if isinstance(value, tuple):
                 sign, value = value
                 match sign:
-                    case '+':
+                    case 'added':
                         val1 = normalize(value)
                         styled.append(f"Property '{accum}{key}'"
                                       f" was added with value: {val1}")
-                    case '-':
+                    case 'removed':
                         styled.append(f"Property '{accum}{key}' was removed")
-                    case '-+':
+                    case 'updated':
                         val1, val2 = normalize(value[0]), normalize(value[1])
                         styled.append(f"Property '{accum}{key}'"
                                       f" was updated. From {val1} to {val2}")

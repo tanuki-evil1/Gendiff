@@ -1,5 +1,11 @@
 from typing import Any
 
+SIGNS = {
+    'added': '+',
+    'removed': '-',
+    'updated': '-+'
+}
+
 
 def normalize(value: Any) -> Any:
     if isinstance(value, bool):
@@ -16,6 +22,7 @@ def stylish_formatter(diff_list: dict) -> str:
         for key, value in node.items():
             if isinstance(value, tuple):
                 sign, value = value
+                sign = SIGNS[sign]
             else:
                 sign = ' '
 

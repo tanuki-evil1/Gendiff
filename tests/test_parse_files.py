@@ -1,5 +1,5 @@
 from pathlib import Path
-from gendiff.parse_files import get_file_data
+from gendiff.parser import get_file_data
 
 FIXTURES_PATH = Path('tests/fixtures')
 

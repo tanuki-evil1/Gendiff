@@ -7,15 +7,6 @@ from gendiff.engine import generate_diff
 FIXTURES_PATH = Path('tests/fixtures')
 
 
-def test_diff():
-    expected = {'follow': ('-', False), 'host': 'hexlet.io', 'proxy': ('-', '123.234.53.22'),
-                'timeout': ('-+', (50, 20)), 'verbose': ('+', True)}
-    dict1 = {'host': 'hexlet.io', 'timeout': 50, 'proxy': '123.234.53.22', 'follow': False}
-    dict2 = {'timeout': 20, 'verbose': True, 'host': 'hexlet.io'}
-    result = diff(dict1, dict2)
-    assert result == expected
-
-
 # TODO: узнать про достаточное кол-во тестов, можно ли меньше или нужно больше
 @pytest.mark.parametrize("path1, path2, res_path", [(f'{FIXTURES_PATH}/file1.json',
                                                      f'{FIXTURES_PATH}/file2.json',
