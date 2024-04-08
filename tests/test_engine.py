@@ -1,7 +1,6 @@
 import pytest
 from pathlib import Path
 
-from gendiff.diff import diff
 from gendiff.engine import generate_diff
 
 FIXTURES_PATH = Path('tests/fixtures')
