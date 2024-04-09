@@ -16,7 +16,7 @@ FIXTURES_PATH = Path('tests/fixtures')
                                                      'file4.json',
                                                      'formatters/file_stylish_3_to_4.txt'),
                                                     ])
-def test_generate_diff(path1, path2, res_path):
+def test_generate_diff(path1: str, path2: str, res_path: str) -> None:
     with open(FIXTURES_PATH / res_path) as file:
         expected = file.read()
 

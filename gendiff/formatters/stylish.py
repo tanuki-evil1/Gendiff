@@ -16,15 +16,15 @@ def normalize(value: Any) -> Any:
         return value
 
 
+# TODO: Пробовал переписать, но пока вижу что нет лучше решений
 def stylish_formatter(diff_list: dict) -> str:
-    def walk(node, accum=1) -> list:
+    def walk(node: dict, accum: int = 1) -> list:
         styled = []
         for key, value in node.items():
+            sign = ' '
             if isinstance(value, tuple):
                 sign, value = value
                 sign = SIGNS[sign]
-            else:
-                sign = ' '
 
             for index in range(len(sign)):
                 if sign == '-+':
