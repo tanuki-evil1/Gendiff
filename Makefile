@@ -10,7 +10,6 @@ lint:
 test:
 	poetry run pytest
 
-# TODO: Надо ли добавлять удаление пакета, как быструю команду
 package-install:
 	python3 -m pip install --user dist/*.whl
 
