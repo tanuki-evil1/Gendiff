@@ -1,7 +1,7 @@
 from gendiff.formatters.plain import plain_formatter
 
 
-def test_plain():
+def test_plain() -> None:
     with open('tests/fixtures/formatters/file_plain_3_to_4.txt') as file:
         expected = file.read()
     d = {'common': {'follow': ('added', False), 'setting1': 'Value 1', 'setting2': ('removed', 200),

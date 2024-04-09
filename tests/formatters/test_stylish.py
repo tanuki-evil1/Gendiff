@@ -1,7 +1,7 @@
 from gendiff.formatters.stylish import stylish_formatter
 
 
-def test_stylish():
+def test_stylish() -> None:
     with open('tests/fixtures/formatters/file_stylish_1_to_2.txt') as file:
         expected = file.read()
 
