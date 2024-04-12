@@ -36,11 +36,14 @@ def stylish_formatter(diff_list: dict, replacer=' '):
             if isinstance(value, tuple):
                 sign, value = value
                 if sign == 'updated':
-                    lines.append(f'{deep_indent[:-2]}{SIGNS[sign][0]} {key}: {walk(value[0], deep_indent_size)}')
-                    lines.append(f'{deep_indent[:-2]}{SIGNS[sign][1]} {key}: {walk(value[1], deep_indent_size)}')
+                    lines.append(f'{deep_indent[:-2]}{SIGNS[sign][0]} {key}: '
+                                 f'{walk(value[0], deep_indent_size)}')
+                    lines.append(f'{deep_indent[:-2]}{SIGNS[sign][1]} {key}: '
+                                 f'{walk(value[1], deep_indent_size)}')
                     continue
 
-            lines.append(f'{deep_indent[:-2]}{SIGNS[sign]} {key}: {walk(value, deep_indent_size)}')
+            lines.append(f'{deep_indent[:-2]}{SIGNS[sign]} {key}: '
+                         f'{walk(value, deep_indent_size)}')
         result = chain('{', lines, [current_indent + '}'])
         return '\n'.join(result)
 
