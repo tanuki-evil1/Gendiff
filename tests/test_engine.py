@@ -34,4 +34,3 @@ def test_generate_diff_errors(path1: str, path2: str, error):
     path2 = FIXTURES_PATH / path2
     with pytest.raises(error):
         generate_diff(str(path1), str(path2), '')
-
