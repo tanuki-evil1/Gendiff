@@ -1,10 +1,16 @@
 from typing import Any
+from itertools import chain
 
 SIGNS = {
     'added': '+',
     'removed': '-',
-    'updated': '-+'
+    'updated': '-+',
+    'nested': ' ',
+    'no_change': ' ',
+    '': ' '
 }
+
+INDENT = 4
 
 
 def normalize(value: Any) -> Any:
@@ -16,34 +22,26 @@ def normalize(value: Any) -> Any:
         return value
 
 
-# TODO: Пробовал переписать, но пока вижу что нет лучше решений
-def stylish_formatter(diff_list: dict) -> str:
-    def walk(node: dict, accum: int = 1) -> list:
-        styled = []
+def stylish_formatter(diff_list: dict, replacer=' '):
+    def walk(node, depth: int = 0):
+        if not isinstance(node, dict):
+            return normalize(node)
+
+        deep_indent_size = depth + INDENT
+        deep_indent = deep_indent_size * replacer
+        current_indent = depth * replacer
+        lines = []
         for key, value in node.items():
-            sign = ' '
+            sign = ''
             if isinstance(value, tuple):
                 sign, value = value
-                sign = SIGNS[sign]
+                if sign == 'updated':
+                    lines.append(f'{deep_indent[:-2]}{SIGNS[sign][0]} {key}: {walk(value[0], deep_indent_size)}')
+                    lines.append(f'{deep_indent[:-2]}{SIGNS[sign][1]} {key}: {walk(value[1], deep_indent_size)}')
+                    continue
 
-            for index in range(len(sign)):
-                if sign == '-+':
-                    if index:
-                        sub_value = normalize(value[1])
-                    else:
-                        sub_value = normalize(value[0])
-                else:
-                    sub_value = normalize(value)
+            lines.append(f'{deep_indent[:-2]}{SIGNS[sign]} {key}: {walk(value, deep_indent_size)}')
+        result = chain('{', lines, [current_indent + '}'])
+        return '\n'.join(result)
 
-                if isinstance(sub_value, dict):
-                    styled.append(f"{' ' * (4 * accum - 2)}"
-                                  f"{sign[index]} {key}: " + '{')
-                    styled.extend(walk(sub_value, accum + 1))
-                    styled.append(f"{' ' * (4 * accum - 2)}  " + '}')
-                else:
-                    styled.append(f"{' ' * (4 * accum - 2)}"
-                                  f"{sign[index]} {key}: {sub_value}")
-
-        return styled
-
-    return '{\n' + '\n'.join(walk(diff_list)) + '\n}' if diff_list else '{}'
+    return walk(diff_list)
