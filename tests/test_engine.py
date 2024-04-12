@@ -24,3 +24,14 @@ def test_generate_diff(path1: str, path2: str, res_path: str) -> None:
     path2 = FIXTURES_PATH / path2
     result = generate_diff(str(path1), str(path2))
     assert result == expected
+
+
+@pytest.mark.parametrize("path1, path2, error", [('file1.json',
+                                                  'file2.json',
+                                                  ValueError)])
+def test_generate_diff_errors(path1: str, path2: str, error):
+    path1 = FIXTURES_PATH / path1
+    path2 = FIXTURES_PATH / path2
+    with pytest.raises(error):
+        generate_diff(str(path1), str(path2), '')
+
