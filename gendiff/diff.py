@@ -3,7 +3,8 @@ from typing import Any, Dict
 
 def diff(data1: dict, data2: dict) -> Dict[str, Any]:
     result = {}
-    for key in sorted((data1 | data2)):
+    sorted_keys = sorted((data1 | data2))
+    for key in sorted_keys:
         if key not in data1:
             result[key] = 'added', data2[key]
         elif key not in data2:
