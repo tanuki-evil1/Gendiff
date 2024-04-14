@@ -20,22 +20,20 @@ def plain_formatter(diff_list: dict) -> str:
         styled = []
 
         for key, value in node.items():
-            if isinstance(value, tuple):
-                sign, value = value
-                match sign:
-                    case 'added':
-                        val1 = normalize(value)
-                        styled.append(f"Property '{accum}{key}'"
-                                      f" was added with value: {val1}")
-                    case 'removed':
-                        styled.append(f"Property '{accum}{key}' was removed")
-                    case 'updated':
-                        val1, val2 = normalize(value[0]), normalize(value[1])
-                        styled.append(f"Property '{accum}{key}'"
-                                      f" was updated. From {val1} to {val2}")
-            elif isinstance(value, dict):
-                styled.extend(walk(value, accum + key + '.'))
-
+            sign, value = value
+            match sign:
+                case 'added':
+                    val1 = normalize(value)
+                    styled.append(f"Property '{accum}{key}'"
+                                  f" was added with value: {val1}")
+                case 'removed':
+                    styled.append(f"Property '{accum}{key}' was removed")
+                case 'updated':
+                    val1, val2 = normalize(value[0]), normalize(value[1])
+                    styled.append(f"Property '{accum}{key}'"
+                                  f" was updated. From {val1} to {val2}")
+                case 'nested':
+                    styled.extend(walk(value, accum + key + '.'))
         return styled
 
     return '\n'.join(walk(diff_list))

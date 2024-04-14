@@ -13,7 +13,9 @@ def test_get_file_data(path1: Path, path2: Path) -> None:
     assert data1 == data2
 
 
-@pytest.mark.parametrize('path, error', [('', ValueError), ('file0.json', SyntaxError)])
-def test_get_file_data_errors(path: str, error) -> None:
-    with pytest.raises(error):
-        get_file_data(FIXTURES_PATH / path)
+def test_get_file_data_errors() -> None:
+    with pytest.raises(ValueError):
+        get_file_data(FIXTURES_PATH / '')
+
+    with pytest.raises(SyntaxError):
+        get_file_data(FIXTURES_PATH / 'file0.json')
