@@ -16,7 +16,7 @@ def normalize(value: Any) -> Any:
 
 
 def plain_formatter(diff_list: dict) -> str:
-    def walk(node: dict, accum: str = '') -> list:
+    def get_lines(node: dict, accum: str = '') -> list:
         styled = []
 
         for key, value in node.items():
@@ -33,7 +33,7 @@ def plain_formatter(diff_list: dict) -> str:
                     styled.append(f"Property '{accum}{key}'"
                                   f" was updated. From {val1} to {val2}")
                 case 'nested':
-                    styled.extend(walk(value, accum + key + '.'))
+                    styled.extend(get_lines(value, accum + key + '.'))
         return styled
 
-    return '\n'.join(walk(diff_list))
+    return '\n'.join(get_lines(diff_list))

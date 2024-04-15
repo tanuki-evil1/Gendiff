@@ -22,12 +22,12 @@ def normalize(value: Any) -> Any:
         return value
 
 
-def get_line(key, value, indent, sign=''):
+def get_line(key: str, value: Any, indent: str, sign: str = '') -> str:
     return f'{indent}{SIGNS[sign]} {key}: {value}'
 
 
 def stylish_formatter(diff_list: dict, replacer: str = ' ') -> str:
-    def get_lines(node: Any, depth: int = 0):
+    def get_lines(node: Any, depth: int = 0) -> str:
         if not isinstance(node, dict):
             return normalize(node)
 
