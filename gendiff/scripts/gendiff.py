@@ -17,8 +17,10 @@ def main():
         sys.exit(1)
     except ValueError:
         print('Invalid path')
+        sys.exit(1)
     except SyntaxError:
         print('Invalid format')
+        sys.exit(1)
 
 
 if __name__ == '__main__':
