@@ -6,15 +6,19 @@ from gendiff.cli import get_data_from_cmd
 
 
 def main():
-    data = get_data_from_cmd()
-    file_path1 = data.first_file
-    file_path2 = data.second_file
-    form = data.format
+    args = get_data_from_cmd()
+    file_path1 = args.first_file
+    file_path2 = args.second_file
+    form = args.format
     try:
-        print(generate_diff(file_path1, file_path2, form=form))
+        print(generate_diff(file_path1, file_path2, format_name=form))
     except OSError:
         print('System errors')
         sys.exit(1)
+    except ValueError:
+        print('Invalid path')
+    except SyntaxError:
+        print('Invalid format')
 
 
 if __name__ == '__main__':

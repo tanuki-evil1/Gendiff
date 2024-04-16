@@ -1,4 +1,4 @@
-from gendiff.formatters.stylish import stylish_formatter
+from gendiff.formatters.stylish import get_stylish_format
 
 
 def test_stylish() -> None:
@@ -7,5 +7,5 @@ def test_stylish() -> None:
 
     dict1 = {'follow': ('removed', False), 'host': 'hexlet.io', 'proxy': ('removed', '123.234.53.22'),
              'timeout': ('updated', (50, 20)), 'verbose': ('added', True)}
-    result = stylish_formatter(dict1)
+    result = get_stylish_format(dict1)
     assert result == expected

@@ -1,4 +1,4 @@
-from gendiff.diff import diff
+from gendiff.diff import get_diff
 
 
 def test_diff() -> None:
@@ -8,5 +8,5 @@ def test_diff() -> None:
 
     dict1 = {'host': 'hexlet.io', 'timeout': 50, 'proxy': '123.234.53.22', 'follow': False}
     dict2 = {'timeout': 20, 'verbose': True, 'host': 'hexlet.io'}
-    result = diff(dict1, dict2)
+    result = get_diff(dict1, dict2)
     assert result == expected

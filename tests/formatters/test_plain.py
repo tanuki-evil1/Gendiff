@@ -1,4 +1,4 @@
-from gendiff.formatters.plain import plain_formatter
+from gendiff.formatters.plain import get_plain_format
 
 
 def test_plain() -> None:
@@ -14,7 +14,7 @@ def test_plain() -> None:
          'group2': ('removed', {'abc': 12345, 'deep': {'id': 45}}),
          'group3': ('added', {'deep': {'id': {'number': 45}}, 'fee': 100500})}
 
-    result = plain_formatter(d)
+    result = get_plain_format(d)
     assert result == expected
 
     with open('tests/fixtures/formatters/file_plain_1_to_2.txt') as file:
@@ -22,5 +22,5 @@ def test_plain() -> None:
     d = {'follow': ('removed', False), 'host': ('no_change', 'hexlet.io'),
          'proxy': ('removed', '123.234.53.22'),
          'timeout': ('updated', (50, 20)), 'verbose': ('added', True)}
-    result = plain_formatter(d)
+    result = get_plain_format(d)
     assert result == expected

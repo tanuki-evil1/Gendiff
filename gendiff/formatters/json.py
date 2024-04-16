@@ -1,5 +1,5 @@
 import json
 
 
-def json_formatter(diff_list: dict) -> str:
+def get_json_format(diff_list: dict) -> str:
     return json.dumps(diff_list)
