@@ -1,3 +1,5 @@
+import pytest
+
 from gendiff.formatters.plain import get_plain_format
 
 
@@ -24,3 +26,7 @@ def test_plain() -> None:
          'timeout': ('updated', (50, 20)), 'verbose': ('added', True)}
     result = get_plain_format(d)
     assert result == expected
+
+    dict1 = {'follow': ('wrong', False)}
+    with pytest.raises(ValueError):
+        get_plain_format(dict1)

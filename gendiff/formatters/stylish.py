@@ -45,17 +45,20 @@ def bypass_nested(node: Any, depth: int = 0) -> str:
         if isinstance(value, tuple):
             status, value = value
 
-        if status == 'updated':
-            lines.append(get_line(key,
-                                  bypass_nested(value[0], deep_indent_size),
-                                  deep_indent[:-2], 'removed'))
-            lines.append(get_line(key,
-                                  bypass_nested(value[1], deep_indent_size),
-                                  deep_indent[:-2], 'added'))
-        elif status in ['added', 'removed', 'no_change', 'nested', '']:
-            lines.append(get_line(key,
-                                  bypass_nested(value, deep_indent_size),
-                                  deep_indent[:-2], status))
+        match status:
+            case 'updated':
+                lines.append(get_line(key,
+                                      bypass_nested(value[0], deep_indent_size),
+                                      deep_indent[:-2], 'removed'))
+                lines.append(get_line(key,
+                                      bypass_nested(value[1], deep_indent_size),
+                                      deep_indent[:-2], 'added'))
+            case 'added' | 'removed' | 'no_change' | 'nested' | '':
+                lines.append(get_line(key,
+                                      bypass_nested(value, deep_indent_size),
+                                      deep_indent[:-2], status))
+            case _:
+                raise ValueError('Invalid data')
 
     result = chain('{', lines, [current_indent + '}'])
     return '\n'.join(result)

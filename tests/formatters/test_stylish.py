@@ -1,3 +1,5 @@
+import pytest
+
 from gendiff.formatters.stylish import get_stylish_format
 
 
@@ -9,3 +11,7 @@ def test_stylish() -> None:
              'timeout': ('updated', (50, 20)), 'verbose': ('added', True)}
     result = get_stylish_format(dict1)
     assert result == expected
+
+    dict1 = {'follow': ('wrong', False)}
+    with pytest.raises(ValueError):
+        get_stylish_format(dict1)
