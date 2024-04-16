@@ -15,11 +15,11 @@ def main():
     except OSError:
         print('System errors')
         sys.exit(1)
-    except ValueError:
-        print('Invalid path')
+    except ValueError as error:
+        print(error)
         sys.exit(1)
-    except SyntaxError:
-        print('Invalid format')
+    except SyntaxError as error:
+        print(error)
         sys.exit(1)
 
 
